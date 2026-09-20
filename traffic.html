@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>AI Traffic Simulation</title>
+    <title>AI Traffic Route Prediction</title>
 
     <style>
         body {
@@ -18,7 +18,7 @@
 
         .box {
             background: #172952;
-            max-width: 500px;
+            max-width: 550px;
             margin: 35px auto;
             padding: 30px;
             border-radius: 15px;
@@ -54,39 +54,46 @@
             margin-top: 25px;
             color: #35d07f;
             font-size: 18px;
-            line-height: 1.8;
+            line-height: 1.9;
+        }
+
+        .route {
+            background: #0b1736;
+            padding: 12px;
+            margin: 10px;
+            border-radius: 10px;
         }
     </style>
 </head>
 
 <body>
 
-<h1>🚦 AI Traffic Simulation</h1>
+<h1>🚦 AI Traffic Route Prediction</h1>
 
-<p>Tell AI where you are going</p>
+<p>Enter your journey details</p>
 
 <div class="box">
 
-    <h2>📍 Traffic Details</h2>
+    <h2>📍 Journey Details</h2>
 
     <input type="text"
-           id="location"
-           placeholder="Enter your current location">
+           id="from"
+           placeholder="From - Example: Kattur">
 
     <input type="text"
-           id="destination"
-           placeholder="Where are you going?">
+           id="to"
+           placeholder="To - Example: Railway Junction">
 
     <select id="vehicle">
-        <option value="Car">🚗 Car</option>
         <option value="Bike">🏍️ Bike</option>
+        <option value="Car">🚗 Car</option>
         <option value="Bus">🚌 Bus</option>
         <option value="Auto">🛺 Auto</option>
         <option value="Truck">🚚 Truck</option>
     </select>
 
-    <button class="predict" onclick="predictTraffic()">
-        🤖 Predict Traffic
+    <button class="predict" onclick="predictRoute()">
+        🤖 Predict Route
     </button>
 
     <div id="result"></div>
@@ -98,88 +105,88 @@
     🏠 Back to Menu
 </button>
 
+
 <script>
 
-function predictTraffic() {
+function predictRoute() {
 
-    let location =
-        document.getElementById("location").value;
+    let from =
+        document.getElementById("from").value;
 
-    let destination =
-        document.getElementById("destination").value;
+    let to =
+        document.getElementById("to").value;
 
     let vehicle =
         document.getElementById("vehicle").value;
 
-    if (location == "" || destination == "") {
+    if (from == "" || to == "") {
 
         document.getElementById("result").innerText =
-            "⚠️ Please enter your location and destination.";
+            "⚠️ Please enter From and To locations.";
 
         return;
     }
 
-    // AI simulated prediction
+    // AI simulated route prediction
 
-    let vehicles =
-        Math.floor(Math.random() * 100) + 50;
+    let distance1 =
+        Math.floor(Math.random() * 4) + 6;
 
-    let congestion =
-        Math.floor(Math.random() * 70) + 20;
+    let distance2 =
+        distance1 + Math.floor(Math.random() * 3) + 1;
 
-    let waiting =
-        Math.floor(Math.random() * 10) + 2;
+    let signals1 =
+        Math.floor(Math.random() * 3) + 3;
 
-    let level;
+    let signals2 =
+        Math.floor(Math.random() * 3) + 5;
 
-    if (congestion >= 70) {
-        level = "🔴 HIGH";
+    let traffic1 =
+        Math.floor(Math.random() * 40) + 20;
+
+    let traffic2 =
+        Math.floor(Math.random() * 40) + 40;
+
+
+    let recommendation;
+
+    if (traffic1 < traffic2) {
+
+        recommendation =
+            "🟢 AI Recommendation: Route 1 is easier and has less traffic.";
+
+    } else {
+
+        recommendation =
+            "🟢 AI Recommendation: Route 2 is easier and has less traffic.";
     }
-    else if (congestion >= 40) {
-        level = "🟡 MEDIUM";
-    }
-    else {
-        level = "🟢 LOW";
-    }
 
-    let suggestion;
-
-    if (congestion >= 70) {
-        suggestion =
-            "⚠️ AI Suggestion: Consider an alternate route.";
-    }
-    else if (congestion >= 40) {
-        suggestion =
-            "💡 AI Suggestion: Traffic is moderate. Expect some delay.";
-    }
-    else {
-        suggestion =
-            "✅ AI Suggestion: Route is relatively clear.";
-    }
 
     document.getElementById("result").innerHTML =
 
-        "📍 From: <b>" + location + "</b><br>" +
+        "📍 From: <b>" + from + "</b><br>" +
 
-        "🎯 To: <b>" + destination + "</b><br>" +
+        "🎯 To: <b>" + to + "</b><br>" +
 
-        "🚗 Vehicle: <b>" + vehicle + "</b><br><br>" +
+        "🏍️ Vehicle: <b>" + vehicle + "</b><br><br>" +
 
-        "🤖 AI Traffic Prediction<br>" +
+        "<div class='route'>" +
+        "🛣️ <b>Route 1</b><br>" +
+        "📏 Distance: " + distance1 + " km<br>" +
+        "🚦 Signals: " + signals1 + "<br>" +
+        "🚗 Traffic Level: " + traffic1 + "%" +
+        "</div>" +
 
-        "🚙 Estimated Vehicles: " +
-        vehicles + "<br>" +
+        "<div class='route'>" +
+        "🛣️ <b>Route 2</b><br>" +
+        "📏 Distance: " + distance2 + " km<br>" +
+        "🚦 Signals: " + signals2 + "<br>" +
+        "🚗 Traffic Level: " + traffic2 + "%" +
+        "</div>" +
 
-        "🚦 Congestion: " +
-        congestion + "%<br>" +
+        "<br>" +
 
-        "⏱️ Estimated Waiting: " +
-        waiting + " minutes<br>" +
-
-        "📊 Traffic Level: " +
-        level + "<br><br>" +
-
-        suggestion;
+        recommendation;
 }
 
 </script>
