@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Traffic Simulation</title>
+
+    <style>
+        body {
+            font-family: Arial;
+            background: #0b1736;
+            color: white;
+            text-align: center;
+            padding: 30px;
+        }
+
+        h1 {
+            color: #4da3ff;
+        }
+
+        .container {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-top: 30px;
+        }
+
+        .card {
+            background: #172952;
+            padding: 25px;
+            width: 220px;
+            border-radius: 15px;
+        }
+
+        .number {
+            font-size: 35px;
+            font-weight: bold;
+        }
+
+        button {
+            padding: 14px 25px;
+            margin: 20px 10px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .simulate {
+            background: #35d07f;
+        }
+
+        .back {
+            background: #4da3ff;
+            color: white;
+        }
+
+        #status {
+            margin-top: 25px;
+            font-size: 20px;
+            color: #ffd75e;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>🚦 Traffic Simulation</h1>
+
+    <p>AI-powered real-time traffic monitoring</p>
+
+    <div class="container">
+
+        <div class="card">
+            <h2>🚗 Vehicles</h2>
+            <div class="number" id="vehicles">50</div>
+        </div>
+
+        <div class="card">
+            <h2>🚦 Congestion</h2>
+            <div class="number" id="congestion">45%</div>
+        </div>
+
+        <div class="card">
+            <h2>⏱️ Waiting Time</h2>
+            <div class="number" id="wait">30 sec</div>
+        </div>
+
+        <div class="card">
+            <h2>🤖 AI Agents</h2>
+            <div class="number">4</div>
+        </div>
+
+    </div>
+
+    <button class="simulate" onclick="simulateTraffic()">
+        🚗 Simulate Traffic
+    </button>
+
+    <button class="back" onclick="location.href='index.html'">
+        🏠 Back to Menu
+    </button>
+
+    <div id="status">
+        AI is monitoring traffic...
+    </div>
+
+
+    <script>
+
+        function simulateTraffic() {
+
+            let vehicles =
+                Math.floor(Math.random() * 80) + 20;
+
+            let congestion =
+                Math.floor(Math.random() * 70) + 20;
+
+            let wait =
+                Math.floor(Math.random() * 50) + 10;
+
+            document.getElementById("vehicles")
+                .innerText = vehicles;
+
+            document.getElementById("congestion")
+                .innerText = congestion + "%";
+
+            document.getElementById("wait")
+                .innerText = wait + " sec";
+
+            document.getElementById("status")
+                .innerText =
+                "🤖 AI Agents detected traffic and adjusted signals!";
+        }
+
+    </script>
+
+</body>
+</html>
