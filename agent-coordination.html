@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Agent Coordination</title>
+
+    <style>
+        body {
+            font-family: Arial;
+            background: #0b1736;
+            color: white;
+            text-align: center;
+            padding: 30px;
+        }
+
+        .box {
+            background: #172952;
+            max-width: 550px;
+            margin: 40px auto;
+            padding: 30px;
+            border-radius: 15px;
+        }
+
+        input {
+            width: 90%;
+            padding: 12px;
+            margin: 10px;
+            border: none;
+            border-radius: 8px;
+        }
+
+        button {
+            padding: 13px 25px;
+            margin: 15px 10px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .suggest {
+            background: #35d07f;
+        }
+
+        .back {
+            background: #4da3ff;
+            color: white;
+        }
+
+        #result {
+            margin-top: 20px;
+            color: #35d07f;
+            font-size: 18px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>🤖 Agent Coordination</h1>
+
+    <p>AI agents communicate and coordinate traffic.</p>
+
+    <div class="box">
+
+        <h2>Enter Junction Details</h2>
+
+        <input type="number" id="junction1"
+            placeholder="Junction 1 vehicles">
+
+        <input type="number" id="junction2"
+            placeholder="Junction 2 vehicles">
+
+        <button class="suggest" onclick="coordinate()">
+            🤖 Get AI Coordination
+        </button>
+
+        <div id="result"></div>
+
+    </div>
+
+    <button class="back" onclick="location.href='index.html'">
+        🏠 Back to Menu
+    </button>
+
+    <script>
+
+        function coordinate() {
+
+            let j1 =
+                Number(document.getElementById("junction1").value);
+
+            let j2 =
+                Number(document.getElementById("junction2").value);
+
+            let result;
+
+            if (j1 > j2) {
+
+                result =
+                    "📡 Agent 1 → Agent 2: Traffic is high at Junction 1. " +
+                    "AI suggests increasing green time at Junction 1.";
+
+            } else if (j2 > j1) {
+
+                result =
+                    "📡 Agent 2 → Agent 1: Traffic is high at Junction 2. " +
+                    "AI suggests increasing green time at Junction 2.";
+
+            } else {
+
+                result =
+                    "🤖 Agents agree: Traffic is balanced. " +
+                    "Keep the current signal timing.";
+
+            }
+
+            document.getElementById("result").innerText = result;
+        }
+
+    </script>
+
+</body>
+</html>
