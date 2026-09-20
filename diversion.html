@@ -14,23 +14,30 @@
 
         .box {
             background: #172952;
-            max-width: 500px;
-            margin: 40px auto;
-            padding: 30px;
+            max-width: 550px;
+            margin: 30px auto;
+            padding: 25px;
             border-radius: 15px;
         }
 
+        .route {
+            background: #203761;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 10px;
+        }
+
         input {
-            width: 90%;
-            padding: 12px;
-            margin: 10px;
+            width: 85%;
+            padding: 11px;
+            margin: 7px;
             border: none;
-            border-radius: 8px;
+            border-radius: 7px;
         }
 
         button {
             padding: 13px 25px;
-            margin: 15px 10px;
+            margin: 15px;
             border: none;
             border-radius: 8px;
             cursor: pointer;
@@ -56,61 +63,100 @@
 
 <body>
 
-    <h1>🚗 Traffic Diversion</h1>
+<h1>🚗 Traffic Diversion</h1>
 
-    <p>AI finds the better route based on traffic.</p>
+<p>AI compares vehicle traffic and suggests the better route.</p>
 
-    <div class="box">
+<div class="box">
 
-        <h2>Enter Traffic Details</h2>
+    <div class="route">
+        <h2>🛣️ Route 1</h2>
 
-        <input type="number" id="route1"
-            placeholder="Route 1 vehicles">
+        <input type="number" id="r1car"
+               placeholder="🚗 Cars">
 
-        <input type="number" id="route2"
-            placeholder="Route 2 vehicles">
+        <input type="number" id="r1bus"
+               placeholder="🚌 Buses">
 
-        <button class="suggest" onclick="getRoute()">
-            🤖 Get AI Suggestion
-        </button>
+        <input type="number" id="r1bike"
+               placeholder="🏍️ Bikes">
 
-        <div id="result"></div>
-
+        <input type="number" id="r1auto"
+               placeholder="🛺 Autos">
     </div>
 
-    <button class="back" onclick="location.href='index.html'">
-        🏠 Back to Menu
+    <div class="route">
+        <h2>🛣️ Route 2</h2>
+
+        <input type="number" id="r2car"
+               placeholder="🚗 Cars">
+
+        <input type="number" id="r2bus"
+               placeholder="🚌 Buses">
+
+        <input type="number" id="r2bike"
+               placeholder="🏍️ Bikes">
+
+        <input type="number" id="r2auto"
+               placeholder="🛺 Autos">
+    </div>
+
+    <button class="suggest" onclick="getRoute()">
+        🤖 Get AI Suggestion
     </button>
 
-    <script>
+    <div id="result"></div>
 
-        function getRoute() {
+</div>
 
-            let route1 =
-                Number(document.getElementById("route1").value);
+<button class="back"
+        onclick="location.href='suggestions.html'">
+    ↩️ Back to Suggestions
+</button>
 
-            let route2 =
-                Number(document.getElementById("route2").value);
+<script>
 
-            if (route1 < route2) {
+function getRoute() {
 
-                document.getElementById("result").innerText =
-                    "🤖 AI Suggestion: Use Route 1. It has less traffic.";
+    let r1 =
+        Number(document.getElementById("r1car").value) +
+        Number(document.getElementById("r1bus").value) +
+        Number(document.getElementById("r1bike").value) +
+        Number(document.getElementById("r1auto").value);
 
-            } else if (route2 < route1) {
+    let r2 =
+        Number(document.getElementById("r2car").value) +
+        Number(document.getElementById("r2bus").value) +
+        Number(document.getElementById("r2bike").value) +
+        Number(document.getElementById("r2auto").value);
 
-                document.getElementById("result").innerText =
-                    "🤖 AI Suggestion: Use Route 2. It has less traffic.";
+    let result;
 
-            } else {
+    if (r1 < r2) {
 
-                document.getElementById("result").innerText =
-                    "🤖 AI Suggestion: Both routes have similar traffic.";
+        result =
+        "🤖 AI Suggestion: Use Route 1. " +
+        "Total traffic = " + r1 +
+        " vehicles, which is lower.";
 
-            }
-        }
+    } else if (r2 < r1) {
 
-    </script>
+        result =
+        "🤖 AI Suggestion: Use Route 2. " +
+        "Total traffic = " + r2 +
+        " vehicles, which is lower.";
+
+    } else {
+
+        result =
+        "🤖 AI Suggestion: Both routes have equal traffic.";
+
+    }
+
+    document.getElementById("result").innerText = result;
+}
+
+</script>
 
 </body>
 </html>
