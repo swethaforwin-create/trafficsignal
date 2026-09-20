@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Traffic Diversion</title>
+
+    <style>
+        body {
+            font-family: Arial;
+            background: #0b1736;
+            color: white;
+            text-align: center;
+            padding: 30px;
+        }
+
+        .box {
+            background: #172952;
+            max-width: 500px;
+            margin: 40px auto;
+            padding: 30px;
+            border-radius: 15px;
+        }
+
+        input {
+            width: 90%;
+            padding: 12px;
+            margin: 10px;
+            border: none;
+            border-radius: 8px;
+        }
+
+        button {
+            padding: 13px 25px;
+            margin: 15px 10px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .suggest {
+            background: #35d07f;
+        }
+
+        .back {
+            background: #4da3ff;
+            color: white;
+        }
+
+        #result {
+            margin-top: 20px;
+            color: #35d07f;
+            font-size: 18px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>🚗 Traffic Diversion</h1>
+
+    <p>AI finds the better route based on traffic.</p>
+
+    <div class="box">
+
+        <h2>Enter Traffic Details</h2>
+
+        <input type="number" id="route1"
+            placeholder="Route 1 vehicles">
+
+        <input type="number" id="route2"
+            placeholder="Route 2 vehicles">
+
+        <button class="suggest" onclick="getRoute()">
+            🤖 Get AI Suggestion
+        </button>
+
+        <div id="result"></div>
+
+    </div>
+
+    <button class="back" onclick="location.href='index.html'">
+        🏠 Back to Menu
+    </button>
+
+    <script>
+
+        function getRoute() {
+
+            let route1 =
+                Number(document.getElementById("route1").value);
+
+            let route2 =
+                Number(document.getElementById("route2").value);
+
+            if (route1 < route2) {
+
+                document.getElementById("result").innerText =
+                    "🤖 AI Suggestion: Use Route 1. It has less traffic.";
+
+            } else if (route2 < route1) {
+
+                document.getElementById("result").innerText =
+                    "🤖 AI Suggestion: Use Route 2. It has less traffic.";
+
+            } else {
+
+                document.getElementById("result").innerText =
+                    "🤖 AI Suggestion: Both routes have similar traffic.";
+
+            }
+        }
+
+    </script>
+
+</body>
+</html>
