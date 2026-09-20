@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Emergency Priority</title>
+
+    <style>
+        body {
+            font-family: Arial;
+            background: #0b1736;
+            color: white;
+            text-align: center;
+            padding: 30px;
+        }
+
+        .box {
+            background: #172952;
+            max-width: 500px;
+            margin: 40px auto;
+            padding: 30px;
+            border-radius: 15px;
+        }
+
+        input, select {
+            width: 90%;
+            padding: 12px;
+            margin: 10px;
+            border: none;
+            border-radius: 8px;
+        }
+
+        button {
+            padding: 13px 25px;
+            margin: 15px 10px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .suggest {
+            background: #ff6262;
+            color: white;
+        }
+
+        .back {
+            background: #4da3ff;
+            color: white;
+        }
+
+        #result {
+            margin-top: 20px;
+            color: #35d07f;
+            font-size: 18px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>🚑 Emergency Priority</h1>
+
+    <p>AI gives priority to emergency vehicles.</p>
+
+    <div class="box">
+
+        <h2>Emergency Vehicle Details</h2>
+
+        <select id="vehicle">
+            <option value="Ambulance">🚑 Ambulance</option>
+            <option value="Fire Engine">🚒 Fire Engine</option>
+            <option value="Police">🚓 Police Vehicle</option>
+        </select>
+
+        <input type="number" id="signal"
+            placeholder="Enter signal number">
+
+        <input type="number" id="distance"
+            placeholder="Distance from signal (km)">
+
+        <button class="suggest" onclick="getPriority()">
+            🚨 Get AI Priority
+        </button>
+
+        <div id="result"></div>
+
+    </div>
+
+    <button class="back" onclick="location.href='index.html'">
+        🏠 Back to Menu
+    </button>
+
+    <script>
+
+        function getPriority() {
+
+            let vehicle =
+                document.getElementById("vehicle").value;
+
+            let signal =
+                document.getElementById("signal").value;
+
+            let distance =
+                Number(document.getElementById("distance").value);
+
+            let result;
+
+            if (distance <= 2) {
+
+                result =
+                    "🚨 HIGH PRIORITY: " + vehicle +
+                    " is near Signal " + signal +
+                    ". Give GREEN signal first.";
+
+            } else {
+
+                result =
+                    "🟡 PREPARE PRIORITY: " + vehicle +
+                    " is approaching Signal " + signal +
+                    ". Prepare the signal for GREEN.";
+            }
+
+            document.getElementById("result").innerText = result;
+        }
+
+    </script>
+
+</body>
+</html>
