@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Traffic Diversion</title>
+    <title>AI Traffic Detection</title>
 
     <style>
         body {
@@ -14,37 +14,30 @@
 
         .box {
             background: #172952;
-            max-width: 550px;
-            margin: 30px auto;
-            padding: 25px;
+            max-width: 500px;
+            margin: 40px auto;
+            padding: 30px;
             border-radius: 15px;
         }
 
-        .route {
-            background: #203761;
-            padding: 15px;
-            margin: 15px 0;
-            border-radius: 10px;
-        }
-
         input {
-            width: 85%;
-            padding: 11px;
-            margin: 7px;
+            width: 90%;
+            padding: 12px;
+            margin: 10px;
             border: none;
-            border-radius: 7px;
+            border-radius: 8px;
         }
 
         button {
             padding: 13px 25px;
-            margin: 15px;
+            margin: 15px 10px;
             border: none;
             border-radius: 8px;
             cursor: pointer;
             font-weight: bold;
         }
 
-        .suggest {
+        .analyze {
             background: #35d07f;
         }
 
@@ -54,106 +47,86 @@
         }
 
         #result {
-            margin-top: 20px;
+            margin-top: 25px;
             color: #35d07f;
             font-size: 18px;
+            line-height: 1.8;
         }
     </style>
 </head>
 
 <body>
 
-<h1>🚗 Traffic Diversion</h1>
+<h1>📍 AI Traffic Detection</h1>
 
-<p>AI compares vehicle traffic and suggests the better route.</p>
+<p>Enter your location to analyze nearby traffic</p>
 
 <div class="box">
 
-    <div class="route">
-        <h2>🛣️ Route 1</h2>
+    <h2>📍 Location</h2>
 
-        <input type="number" id="r1car"
-               placeholder="🚗 Cars">
+    <input type="text" id="location"
+           placeholder="Example: Trichy Central Bus Stand">
 
-        <input type="number" id="r1bus"
-               placeholder="🚌 Buses">
-
-        <input type="number" id="r1bike"
-               placeholder="🏍️ Bikes">
-
-        <input type="number" id="r1auto"
-               placeholder="🛺 Autos">
-    </div>
-
-    <div class="route">
-        <h2>🛣️ Route 2</h2>
-
-        <input type="number" id="r2car"
-               placeholder="🚗 Cars">
-
-        <input type="number" id="r2bus"
-               placeholder="🚌 Buses">
-
-        <input type="number" id="r2bike"
-               placeholder="🏍️ Bikes">
-
-        <input type="number" id="r2auto"
-               placeholder="🛺 Autos">
-    </div>
-
-    <button class="suggest" onclick="getRoute()">
-        🤖 Get AI Suggestion
+    <button class="analyze" onclick="analyzeTraffic()">
+        🤖 Analyze Traffic
     </button>
 
     <div id="result"></div>
 
 </div>
 
-<button class="back"
-        onclick="location.href='suggestions.html'">
+<button class="back" onclick="location.href='suggestions.html'">
     ↩️ Back to Suggestions
 </button>
 
 <script>
 
-function getRoute() {
+function analyzeTraffic() {
 
-    let r1 =
-        Number(document.getElementById("r1car").value) +
-        Number(document.getElementById("r1bus").value) +
-        Number(document.getElementById("r1bike").value) +
-        Number(document.getElementById("r1auto").value);
+    let location =
+        document.getElementById("location").value;
 
-    let r2 =
-        Number(document.getElementById("r2car").value) +
-        Number(document.getElementById("r2bus").value) +
-        Number(document.getElementById("r2bike").value) +
-        Number(document.getElementById("r2auto").value);
-
-    let result;
-
-    if (r1 < r2) {
-
-        result =
-        "🤖 AI Suggestion: Use Route 1. " +
-        "Total traffic = " + r1 +
-        " vehicles, which is lower.";
-
-    } else if (r2 < r1) {
-
-        result =
-        "🤖 AI Suggestion: Use Route 2. " +
-        "Total traffic = " + r2 +
-        " vehicles, which is lower.";
-
-    } else {
-
-        result =
-        "🤖 AI Suggestion: Both routes have equal traffic.";
-
+    if (location == "") {
+        document.getElementById("result").innerText =
+            "⚠️ Please enter your location.";
+        return;
     }
 
-    document.getElementById("result").innerText = result;
+    // AI simulated vehicle prediction
+    let bikes = Math.floor(Math.random() * 30) + 10;
+    let cars = Math.floor(Math.random() * 20) + 5;
+    let buses = Math.floor(Math.random() * 8) + 2;
+    let trucks = Math.floor(Math.random() * 6) + 1;
+    let autos = Math.floor(Math.random() * 12) + 3;
+
+    let total = bikes + cars + buses + trucks + autos;
+
+    let level;
+
+    if (total >= 70) {
+        level = "🔴 HIGH";
+    }
+    else if (total >= 40) {
+        level = "🟡 MEDIUM";
+    }
+    else {
+        level = "🟢 LOW";
+    }
+
+    document.getElementById("result").innerHTML =
+
+        "📍 Location: <b>" + location + "</b><br><br>" +
+
+        "🤖 AI Traffic Prediction<br>" +
+        "🏍️ Bikes: " + bikes + "<br>" +
+        "🚗 Cars: " + cars + "<br>" +
+        "🚌 Buses: " + buses + "<br>" +
+        "🚚 Trucks: " + trucks + "<br>" +
+        "🛺 Autos: " + autos + "<br><br>" +
+
+        "🚦 Total Vehicles: " + total + "<br>" +
+        "📊 Traffic Level: " + level;
 }
 
 </script>
