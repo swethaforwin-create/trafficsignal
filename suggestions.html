@@ -2,7 +2,6 @@
 <html>
 <head>
     <title>AI Suggestions</title>
-
     <style>
         body {
             font-family: Arial;
@@ -18,22 +17,17 @@
 
         .container {
             display: flex;
+            flex-wrap: wrap;
             justify-content: center;
             gap: 20px;
-            flex-wrap: wrap;
             margin-top: 40px;
         }
 
         .card {
             background: #172952;
-            width: 220px;
+            width: 230px;
             padding: 25px;
             border-radius: 15px;
-            cursor: pointer;
-        }
-
-        .card:hover {
-            transform: scale(1.05);
         }
 
         .card h2 {
@@ -50,7 +44,7 @@
         }
 
         .back {
-            margin-top: 35px;
+            margin-top: 30px;
             background: #4da3ff;
             color: white;
         }
@@ -59,50 +53,50 @@
 
 <body>
 
-    <h1>💡 AI Traffic Suggestions</h1>
+<h1>💡 AI Traffic Suggestions</h1>
+<p>Select an option</p>
 
-    <p>Select a traffic management option</p>
+<div class="container">
 
-    <div class="container">
-
-        <div class="card"
-             onclick="location.href='signal-optimization.html'">
-            <h2>🚦</h2>
-            <h2>Signal Optimization</h2>
-            <p>AI recommends signal green time based on traffic.</p>
-            <button>Open</button>
-        </div>
-
-        <div class="card"
-             onclick="location.href='diversion.html'">
-            <h2>🚗</h2>
-            <h2>Traffic Diversion</h2>
-            <p>AI finds the route with less traffic.</p>
-            <button>Open</button>
-        </div>
-
-        <div class="card"
-             onclick="location.href='emergency-suggestion.html'">
-            <h2>🚑</h2>
-            <h2>Emergency Priority</h2>
-            <p>AI gives priority to emergency vehicles.</p>
-            <button>Open</button>
-        </div>
-
-        <div class="card"
-             onclick="location.href='agent-coordination.html'">
-            <h2>🤖</h2>
-            <h2>Agent Coordination</h2>
-            <p>AI agents communicate and coordinate traffic.</p>
-            <button>Open</button>
-        </div>
-
+    <div class="card">
+        <h2>🚦 Signal Optimization</h2>
+        <p>Optimize green signal time.</p>
+        <button onclick="location.href='signal-optimization.html'">
+            Open
+        </button>
     </div>
 
-    <button class="back"
-            onclick="location.href='index.html'">
-        🏠 Back to Menu
-    </button>
+    <div class="card">
+        <h2>🚗 Traffic Diversion</h2>
+        <p>Find a less congested route.</p>
+        <button onclick="location.href='diversion.html'">
+            Open
+        </button>
+    </div>
+
+    <div class="card">
+        <h2>🚑 Emergency Priority</h2>
+        <p>Give priority to emergency vehicles.</p>
+        <button onclick="location.href='emergency-suggestion.html'">
+            Open
+        </button>
+    </div>
+
+    <div class="card">
+        <h2>🤖 Agent Coordination</h2>
+        <p>Coordinate traffic AI agents.</p>
+        <button onclick="location.href='agent-coordination.html'">
+            Open
+        </button>
+    </div>
+
+</div>
+
+<br>
+
+<button class="back" onclick="location.href='index.html'">
+    🏠 Back to Menu
+</button>
 
 </body>
 </html>
