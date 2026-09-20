@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Traffic Simulation</title>
+    <title>AI Traffic Simulation</title>
 
     <style>
         body {
@@ -16,36 +16,32 @@
             color: #4da3ff;
         }
 
-        .container {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            flex-wrap: wrap;
-            margin-top: 30px;
-        }
-
-        .card {
+        .box {
             background: #172952;
-            padding: 25px;
-            width: 220px;
+            max-width: 500px;
+            margin: 35px auto;
+            padding: 30px;
             border-radius: 15px;
         }
 
-        .number {
-            font-size: 35px;
-            font-weight: bold;
+        input, select {
+            width: 90%;
+            padding: 12px;
+            margin: 10px;
+            border: none;
+            border-radius: 8px;
         }
 
         button {
             padding: 14px 25px;
-            margin: 20px 10px;
+            margin: 15px 10px;
             border: none;
             border-radius: 8px;
             cursor: pointer;
             font-weight: bold;
         }
 
-        .simulate {
+        .predict {
             background: #35d07f;
         }
 
@@ -54,85 +50,139 @@
             color: white;
         }
 
-        #status {
+        #result {
             margin-top: 25px;
-            font-size: 20px;
-            color: #ffd75e;
+            color: #35d07f;
+            font-size: 18px;
+            line-height: 1.8;
         }
     </style>
 </head>
 
 <body>
 
-    <h1>🚦 Traffic Simulation</h1>
+<h1>🚦 AI Traffic Simulation</h1>
 
-    <p>AI-powered real-time traffic monitoring</p>
+<p>Tell AI where you are going</p>
 
-    <div class="container">
+<div class="box">
 
-        <div class="card">
-            <h2>🚗 Vehicles</h2>
-            <div class="number" id="vehicles">50</div>
-        </div>
+    <h2>📍 Traffic Details</h2>
 
-        <div class="card">
-            <h2>🚦 Congestion</h2>
-            <div class="number" id="congestion">45%</div>
-        </div>
+    <input type="text"
+           id="location"
+           placeholder="Enter your current location">
 
-        <div class="card">
-            <h2>⏱️ Waiting Time</h2>
-            <div class="number" id="wait">30 sec</div>
-        </div>
+    <input type="text"
+           id="destination"
+           placeholder="Where are you going?">
 
-        <div class="card">
-            <h2>🤖 AI Agents</h2>
-            <div class="number">4</div>
-        </div>
+    <select id="vehicle">
+        <option value="Car">🚗 Car</option>
+        <option value="Bike">🏍️ Bike</option>
+        <option value="Bus">🚌 Bus</option>
+        <option value="Auto">🛺 Auto</option>
+        <option value="Truck">🚚 Truck</option>
+    </select>
 
-    </div>
-
-    <button class="simulate" onclick="simulateTraffic()">
-        🚗 Simulate Traffic
+    <button class="predict" onclick="predictTraffic()">
+        🤖 Predict Traffic
     </button>
 
-    <button class="back" onclick="location.href='index.html'">
-        🏠 Back to Menu
-    </button>
+    <div id="result"></div>
 
-    <div id="status">
-        AI is monitoring traffic...
-    </div>
+</div>
 
+<button class="back"
+        onclick="location.href='index.html'">
+    🏠 Back to Menu
+</button>
 
-    <script>
+<script>
 
-        function simulateTraffic() {
+function predictTraffic() {
 
-            let vehicles =
-                Math.floor(Math.random() * 80) + 20;
+    let location =
+        document.getElementById("location").value;
 
-            let congestion =
-                Math.floor(Math.random() * 70) + 20;
+    let destination =
+        document.getElementById("destination").value;
 
-            let wait =
-                Math.floor(Math.random() * 50) + 10;
+    let vehicle =
+        document.getElementById("vehicle").value;
 
-            document.getElementById("vehicles")
-                .innerText = vehicles;
+    if (location == "" || destination == "") {
 
-            document.getElementById("congestion")
-                .innerText = congestion + "%";
+        document.getElementById("result").innerText =
+            "⚠️ Please enter your location and destination.";
 
-            document.getElementById("wait")
-                .innerText = wait + " sec";
+        return;
+    }
 
-            document.getElementById("status")
-                .innerText =
-                "🤖 AI Agents detected traffic and adjusted signals!";
-        }
+    // AI simulated prediction
 
-    </script>
+    let vehicles =
+        Math.floor(Math.random() * 100) + 50;
+
+    let congestion =
+        Math.floor(Math.random() * 70) + 20;
+
+    let waiting =
+        Math.floor(Math.random() * 10) + 2;
+
+    let level;
+
+    if (congestion >= 70) {
+        level = "🔴 HIGH";
+    }
+    else if (congestion >= 40) {
+        level = "🟡 MEDIUM";
+    }
+    else {
+        level = "🟢 LOW";
+    }
+
+    let suggestion;
+
+    if (congestion >= 70) {
+        suggestion =
+            "⚠️ AI Suggestion: Consider an alternate route.";
+    }
+    else if (congestion >= 40) {
+        suggestion =
+            "💡 AI Suggestion: Traffic is moderate. Expect some delay.";
+    }
+    else {
+        suggestion =
+            "✅ AI Suggestion: Route is relatively clear.";
+    }
+
+    document.getElementById("result").innerHTML =
+
+        "📍 From: <b>" + location + "</b><br>" +
+
+        "🎯 To: <b>" + destination + "</b><br>" +
+
+        "🚗 Vehicle: <b>" + vehicle + "</b><br><br>" +
+
+        "🤖 AI Traffic Prediction<br>" +
+
+        "🚙 Estimated Vehicles: " +
+        vehicles + "<br>" +
+
+        "🚦 Congestion: " +
+        congestion + "%<br>" +
+
+        "⏱️ Estimated Waiting: " +
+        waiting + " minutes<br>" +
+
+        "📊 Traffic Level: " +
+        level + "<br><br>" +
+
+        suggestion;
+}
+
+</script>
 
 </body>
 </html>
