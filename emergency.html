@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Emergency Vehicle Priority</title>
+
+    <style>
+        body {
+            font-family: Arial;
+            background: #0b1736;
+            color: white;
+            text-align: center;
+            padding: 30px;
+        }
+
+        h1 {
+            color: #ff6262;
+        }
+
+        .card {
+            background: #172952;
+            padding: 30px;
+            max-width: 500px;
+            margin: 40px auto;
+            border-radius: 15px;
+        }
+
+        .status {
+            font-size: 25px;
+            color: #35d07f;
+            margin: 20px;
+        }
+
+        button {
+            padding: 14px 25px;
+            margin: 10px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .emergency {
+            background: #ff6262;
+            color: white;
+        }
+
+        .back {
+            background: #4da3ff;
+            color: white;
+        }
+
+        #message {
+            margin-top: 25px;
+            font-size: 18px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>🚑 Emergency Vehicle Priority</h1>
+
+    <p>AI-based Emergency Traffic Management</p>
+
+    <div class="card">
+
+        <h2>🚑 Emergency Vehicle</h2>
+
+        <p>Vehicle: Ambulance</p>
+
+        <p id="status" class="status">
+            🟢 Normal Traffic
+        </p>
+
+        <button class="emergency" onclick="activateEmergency()">
+            🚨 Activate Emergency
+        </button>
+
+        <p id="message">
+            AI is monitoring emergency vehicles...
+        </p>
+
+    </div>
+
+    <button class="back" onclick="location.href='index.html'">
+        🏠 Back to Menu
+    </button>
+
+
+    <script>
+
+        function activateEmergency() {
+
+            document.getElementById("status").innerText =
+                "🔴 EMERGENCY PRIORITY ACTIVE";
+
+            document.getElementById("message").innerText =
+                "🤖 AI detected ambulance. Signals changed to GREEN for emergency vehicle.";
+
+        }
+
+    </script>
+
+</body>
+</html>
