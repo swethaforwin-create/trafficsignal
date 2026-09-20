@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Adaptive Traffic Signals</title>
+
+    <style>
+        body {
+            font-family: Arial;
+            background: #0b1736;
+            color: white;
+            text-align: center;
+            padding: 30px;
+        }
+
+        h1 {
+            color: #ffd75e;
+        }
+
+        .signal {
+            background: #172952;
+            width: 220px;
+            margin: 40px auto;
+            padding: 25px;
+            border-radius: 15px;
+        }
+
+        .light {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            margin: 15px auto;
+            background: #333;
+        }
+
+        .red {
+            background: red;
+        }
+
+        .yellow {
+            background: yellow;
+        }
+
+        .green {
+            background: #35d07f;
+        }
+
+        button {
+            padding: 14px 25px;
+            margin: 10px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .change {
+            background: #35d07f;
+        }
+
+        .back {
+            background: #4da3ff;
+            color: white;
+        }
+
+        #status {
+            font-size: 20px;
+            color: #ffd75e;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>🚦 Adaptive Traffic Signals</h1>
+
+    <p>AI dynamically controls traffic signals</p>
+
+    <div class="signal">
+
+        <div id="red" class="light red"></div>
+
+        <div id="yellow" class="light"></div>
+
+        <div id="green" class="light"></div>
+
+    </div>
+
+    <h2 id="status">🔴 RED — Stop</h2>
+
+    <button class="change" onclick="changeSignal()">
+        🤖 AI Change Signal
+    </button>
+
+    <button class="back" onclick="location.href='index.html'">
+        🏠 Back to Menu
+    </button>
+
+
+    <script>
+
+        let state = 0;
+
+        function changeSignal() {
+
+            state++;
+
+            document.getElementById("red").className = "light";
+            document.getElementById("yellow").className = "light";
+            document.getElementById("green").className = "light";
+
+            if (state % 3 == 1) {
+
+                document.getElementById("yellow").className =
+                    "light yellow";
+
+                document.getElementById("status").innerText =
+                    "🟡 YELLOW — Get Ready";
+
+            } else if (state % 3 == 2) {
+
+                document.getElementById("green").className =
+                    "light green";
+
+                document.getElementById("status").innerText =
+                    "🟢 GREEN — Go";
+
+            } else {
+
+                document.getElementById("red").className =
+                    "light red";
+
+                document.getElementById("status").innerText =
+                    "🔴 RED — Stop";
+            }
+        }
+
+    </script>
+
+</body>
+</html>
