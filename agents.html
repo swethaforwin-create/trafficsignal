@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>AI Agents</title>
+
+    <style>
+        body {
+            font-family: Arial;
+            background: #0b1736;
+            color: white;
+            text-align: center;
+            padding: 30px;
+        }
+
+        h1 {
+            color: #35d07f;
+        }
+
+        .container {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-top: 30px;
+        }
+
+        .card {
+            background: #172952;
+            padding: 20px;
+            width: 220px;
+            border-radius: 15px;
+        }
+
+        .online {
+            color: #35d07f;
+            font-weight: bold;
+        }
+
+        button {
+            padding: 14px 25px;
+            margin: 25px 10px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .run {
+            background: #35d07f;
+        }
+
+        .back {
+            background: #4da3ff;
+            color: white;
+        }
+
+        #log {
+            background: #172952;
+            padding: 20px;
+            margin: 25px auto;
+            max-width: 600px;
+            border-radius: 12px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>🤖 AI Agent Network</h1>
+
+    <p>Decentralized Multi-Agent Traffic Management</p>
+
+    <div class="container">
+
+        <div class="card">
+            <h2>🚦 Agent 1</h2>
+            <p>Traffic Monitor</p>
+            <p class="online">● ONLINE</p>
+        </div>
+
+        <div class="card">
+            <h2>🚦 Agent 2</h2>
+            <p>Flow Optimizer</p>
+            <p class="online">● ONLINE</p>
+        </div>
+
+        <div class="card">
+            <h2>🚦 Agent 3</h2>
+            <p>Congestion Agent</p>
+            <p class="online">● ONLINE</p>
+        </div>
+
+        <div class="card">
+            <h2>🚦 Agent 4</h2>
+            <p>Coordination Agent</p>
+            <p class="online">● ONLINE</p>
+        </div>
+
+    </div>
+
+    <button class="run" onclick="runAgents()">
+        🤖 Run Agent Coordination
+    </button>
+
+    <button class="back" onclick="location.href='index.html'">
+        🏠 Back to Menu
+    </button>
+
+    <div id="log">
+        <h2>📡 Agent Communication</h2>
+        <p>Waiting for agent communication...</p>
+    </div>
+
+
+    <script>
+
+        function runAgents() {
+
+            document.getElementById("log").innerHTML =
+                "<h2>📡 Agent Communication</h2>" +
+                "<p>Agent 1 → Agent 2: Traffic detected</p>" +
+                "<p>Agent 2 → Agent 3: Optimize traffic flow</p>" +
+                "<p>Agent 3 → Agent 4: Congestion detected</p>" +
+                "<p>Agent 4 → All Agents: Signals adjusted ✅</p>";
+        }
+
+    </script>
+
+</body>
+</html>
