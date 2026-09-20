@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Signal Optimization</title>
+    <title>AI Suggestions</title>
 
     <style>
         body {
@@ -12,108 +12,97 @@
             padding: 30px;
         }
 
-        .box {
-            background: #172952;
-            max-width: 500px;
-            margin: 40px auto;
-            padding: 30px;
-            border-radius: 15px;
+        h1 {
+            color: #4da3ff;
         }
 
-        input, select {
-            width: 90%;
-            padding: 12px;
-            margin: 10px;
-            border-radius: 8px;
-            border: none;
+        .container {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-top: 40px;
+        }
+
+        .card {
+            background: #172952;
+            width: 220px;
+            padding: 25px;
+            border-radius: 15px;
+            cursor: pointer;
+        }
+
+        .card:hover {
+            transform: scale(1.05);
+        }
+
+        .card h2 {
+            color: #35d07f;
         }
 
         button {
-            padding: 13px 25px;
-            margin: 15px;
+            padding: 12px 20px;
             border: none;
             border-radius: 8px;
             cursor: pointer;
             font-weight: bold;
-        }
-
-        .btn {
             background: #35d07f;
         }
 
         .back {
+            margin-top: 35px;
             background: #4da3ff;
             color: white;
-        }
-
-        #result {
-            margin-top: 20px;
-            color: #35d07f;
-            font-size: 18px;
         }
     </style>
 </head>
 
 <body>
 
-    <h1>🚦 Signal Optimization</h1>
+    <h1>💡 AI Traffic Suggestions</h1>
 
-    <div class="box">
+    <p>Select a traffic management option</p>
 
-        <h2>AI Traffic Input</h2>
+    <div class="container">
 
-        <input type="number" id="traffic"
-               placeholder="Enter vehicles">
+        <div class="card"
+             onclick="location.href='signal-optimization.html'">
+            <h2>🚦</h2>
+            <h2>Signal Optimization</h2>
+            <p>AI recommends signal green time based on traffic.</p>
+            <button>Open</button>
+        </div>
 
-        <select id="signal">
-            <option value="1">Signal 1</option>
-            <option value="2">Signal 2</option>
-            <option value="3">Signal 3</option>
-            <option value="4">Signal 4</option>
-        </select>
+        <div class="card"
+             onclick="location.href='diversion.html'">
+            <h2>🚗</h2>
+            <h2>Traffic Diversion</h2>
+            <p>AI finds the route with less traffic.</p>
+            <button>Open</button>
+        </div>
 
-        <button class="btn" onclick="getSuggestion()">
-            🤖 Get AI Suggestion
-        </button>
+        <div class="card"
+             onclick="location.href='emergency-suggestion.html'">
+            <h2>🚑</h2>
+            <h2>Emergency Priority</h2>
+            <p>AI gives priority to emergency vehicles.</p>
+            <button>Open</button>
+        </div>
 
-        <div id="result"></div>
+        <div class="card"
+             onclick="location.href='agent-coordination.html'">
+            <h2>🤖</h2>
+            <h2>Agent Coordination</h2>
+            <p>AI agents communicate and coordinate traffic.</p>
+            <button>Open</button>
+        </div>
 
     </div>
 
-    <button class="back" onclick="location.href='index.html'">
+    <button class="back"
+            onclick="location.href='index.html'">
         🏠 Back to Menu
     </button>
-
-    <script>
-
-        function getSuggestion() {
-
-            let traffic =
-                Number(document.getElementById("traffic").value);
-
-            let signal =
-                document.getElementById("signal").value;
-
-            let time;
-
-            if (traffic >= 80) {
-                time = 60;
-            }
-            else if (traffic >= 40) {
-                time = 40;
-            }
-            else {
-                time = 25;
-            }
-
-            document.getElementById("result").innerText =
-                "🤖 AI Suggestion: Signal " + signal +
-                " should stay GREEN for " + time +
-                " seconds based on " + traffic +
-                " vehicles.";
-        }
-
-    </script>
 
 </body>
 </html>
