@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>AI Suggestions</title>
+
+    <style>
+        body {
+            font-family: Arial;
+            background: #0b1736;
+            color: white;
+            text-align: center;
+            padding: 30px;
+        }
+
+        h1 {
+            color: #ffd75e;
+        }
+
+        .container {
+            max-width: 650px;
+            margin: 30px auto;
+        }
+
+        .card {
+            background: #172952;
+            padding: 20px;
+            margin: 15px;
+            border-radius: 12px;
+            text-align: left;
+        }
+
+        .card h2 {
+            color: #4da3ff;
+        }
+
+        button {
+            padding: 14px 25px;
+            margin: 15px 10px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .generate {
+            background: #35d07f;
+        }
+
+        .back {
+            background: #4da3ff;
+            color: white;
+        }
+
+        #result {
+            color: #35d07f;
+            font-size: 18px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>💡 AI Traffic Suggestions</h1>
+
+    <p>AI analyzes traffic and provides smart solutions</p>
+
+    <div class="container">
+
+        <div class="card">
+            <h2>🚦 Signal Optimization</h2>
+            <p>Adjust green signal time based on vehicle density.</p>
+        </div>
+
+        <div class="card">
+            <h2>🚗 Traffic Diversion</h2>
+            <p>Redirect vehicles to less congested roads.</p>
+        </div>
+
+        <div class="card">
+            <h2>🚑 Emergency Priority</h2>
+            <p>Give priority to emergency vehicles like ambulances.</p>
+        </div>
+
+        <div class="card">
+            <h2>🤖 Agent Coordination</h2>
+            <p>AI agents communicate with nearby junctions.</p>
+        </div>
+
+    </div>
+
+    <button class="generate" onclick="generateSuggestion()">
+        🤖 Generate AI Suggestion
+    </button>
+
+    <button class="back" onclick="location.href='index.html'">
+        🏠 Back to Menu
+    </button>
+
+    <div id="result">
+        Click the button to get an AI suggestion.
+    </div>
+
+
+    <script>
+
+        function generateSuggestion() {
+
+            document.getElementById("result").innerText =
+                "🤖 AI Suggestion: Increase green signal time at the congested junction.";
+
+        }
+
+    </script>
+
+</body>
+</html>
