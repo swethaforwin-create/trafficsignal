@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Traffic AI Dashboard</title>
+
+    <style>
+        body {
+            font-family: Arial;
+            background: #0b1736;
+            color: white;
+            text-align: center;
+            padding: 30px;
+        }
+
+        h1 {
+            color: #4da3ff;
+        }
+
+        .container {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-top: 35px;
+        }
+
+        .card {
+            background: #172952;
+            padding: 25px;
+            width: 200px;
+            border-radius: 15px;
+        }
+
+        .number {
+            font-size: 32px;
+            font-weight: bold;
+            color: #35d07f;
+        }
+
+        .status {
+            margin-top: 35px;
+            background: #172952;
+            padding: 20px;
+            border-radius: 15px;
+        }
+
+        button {
+            padding: 14px 25px;
+            margin: 25px 10px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .refresh {
+            background: #35d07f;
+        }
+
+        .back {
+            background: #4da3ff;
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>📊 Traffic AI Dashboard</h1>
+
+    <p>Real-time Traffic Management Overview</p>
+
+    <div class="container">
+
+        <div class="card">
+            <h2>🚗 Vehicles</h2>
+            <div class="number" id="vehicles">120</div>
+        </div>
+
+        <div class="card">
+            <h2>🚦 Congestion</h2>
+            <div class="number" id="congestion">35%</div>
+        </div>
+
+        <div class="card">
+            <h2>🤖 AI Agents</h2>
+            <div class="number">4</div>
+        </div>
+
+        <div class="card">
+            <h2>🚑 Emergency</h2>
+            <div class="number" id="emergency">0</div>
+        </div>
+
+    </div>
+
+    <div class="status">
+        <h2>🟢 System Status</h2>
+        <p id="status">All AI agents are working normally.</p>
+    </div>
+
+    <button class="refresh" onclick="updateDashboard()">
+        🔄 Update Dashboard
+    </button>
+
+    <button class="back" onclick="location.href='index.html'">
+        🏠 Back to Menu
+    </button>
+
+
+    <script>
+
+        function updateDashboard() {
+
+            let vehicles =
+                Math.floor(Math.random() * 100) + 50;
+
+            let congestion =
+                Math.floor(Math.random() * 70) + 10;
+
+            document.getElementById("vehicles")
+                .innerText = vehicles;
+
+            document.getElementById("congestion")
+                .innerText = congestion + "%";
+
+            document.getElementById("status")
+                .innerText =
+                "🤖 AI dashboard updated successfully!";
+        }
+
+    </script>
+
+</body>
+</html>
