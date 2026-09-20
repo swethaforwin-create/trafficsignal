@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Emergency Priority</title>
+    <title>Emergency Priority AI</title>
 
     <style>
         body {
@@ -10,6 +10,10 @@
             color: white;
             text-align: center;
             padding: 30px;
+        }
+
+        h1 {
+            color: #ff6262;
         }
 
         .box {
@@ -37,7 +41,7 @@
             font-weight: bold;
         }
 
-        .suggest {
+        .activate {
             background: #ff6262;
             color: white;
         }
@@ -48,81 +52,100 @@
         }
 
         #result {
-            margin-top: 20px;
+            margin-top: 25px;
             color: #35d07f;
             font-size: 18px;
+            line-height: 1.8;
         }
     </style>
 </head>
 
 <body>
 
-    <h1>🚑 Emergency Priority</h1>
+<h1>🚑 Emergency Vehicle Priority</h1>
 
-    <p>AI gives priority to emergency vehicles.</p>
+<p>AI predicts the emergency vehicle route</p>
 
-    <div class="box">
+<div class="box">
 
-        <h2>Emergency Vehicle Details</h2>
+    <h2>🚑 Emergency Vehicle</h2>
 
-        <select id="vehicle">
-            <option value="Ambulance">🚑 Ambulance</option>
-            <option value="Fire Engine">🚒 Fire Engine</option>
-            <option value="Police">🚓 Police Vehicle</option>
-        </select>
+    <select id="vehicle">
+        <option value="Ambulance">🚑 Ambulance</option>
+        <option value="Fire Truck">🚒 Fire Truck</option>
+        <option value="Police Vehicle">🚓 Police Vehicle</option>
+    </select>
 
-        <input type="number" id="signal"
-            placeholder="Enter signal number">
+    <h3>📍 Where do you want to go?</h3>
 
-        <input type="number" id="distance"
-            placeholder="Distance from signal (km)">
+    <input type="text"
+           id="destination"
+           placeholder="Enter destination">
 
-        <button class="suggest" onclick="getPriority()">
-            🚨 Get AI Priority
-        </button>
-
-        <div id="result"></div>
-
-    </div>
-
-    <button class="back" onclick="location.href='index.html'">
-        🏠 Back to Menu
+    <button class="activate" onclick="predictRoute()">
+        🤖 Predict Emergency Route
     </button>
 
-    <script>
+    <div id="result"></div>
 
-        function getPriority() {
+</div>
 
-            let vehicle =
-                document.getElementById("vehicle").value;
+<button class="back"
+        onclick="location.href='suggestions.html'">
+    ↩️ Back to Suggestions
+</button>
 
-            let signal =
-                document.getElementById("signal").value;
+<script>
 
-            let distance =
-                Number(document.getElementById("distance").value);
+function predictRoute() {
 
-            let result;
+    let vehicle =
+        document.getElementById("vehicle").value;
 
-            if (distance <= 2) {
+    let destination =
+        document.getElementById("destination").value;
 
-                result =
-                    "🚨 HIGH PRIORITY: " + vehicle +
-                    " is near Signal " + signal +
-                    ". Give GREEN signal first.";
+    if (destination == "") {
+        document.getElementById("result").innerText =
+            "⚠️ Please enter your destination.";
+        return;
+    }
 
-            } else {
+    // AI simulated prediction
+    let distance =
+        Math.floor(Math.random() * 8) + 1;
 
-                result =
-                    "🟡 PREPARE PRIORITY: " + vehicle +
-                    " is approaching Signal " + signal +
-                    ". Prepare the signal for GREEN.";
-            }
+    let signal =
+        Math.floor(Math.random() * 4) + 1;
 
-            document.getElementById("result").innerText = result;
-        }
+    let eta =
+        Math.floor(distance * 2) + 3;
 
-    </script>
+    document.getElementById("result").innerHTML =
+
+        "🚑 Vehicle: <b>" + vehicle + "</b><br>" +
+
+        "📍 Destination: <b>" +
+        destination + "</b><br><br>" +
+
+        "🤖 AI Prediction<br>" +
+
+        "📏 Distance to nearest signal: " +
+        distance + " km<br>" +
+
+        "🚦 Nearest Signal: Signal " +
+        signal + "<br>" +
+
+        "⏱️ Estimated Arrival: " +
+        eta + " minutes<br><br>" +
+
+        "🟢 Emergency Priority Activated<br>" +
+
+        "🚦 AI will give GREEN priority to " +
+        "Signal " + signal + " for the emergency vehicle.";
+}
+
+</script>
 
 </body>
 </html>
