@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>AI Suggestions</title>
+    <title>Signal Optimization</title>
 
     <style>
         body {
@@ -12,37 +12,32 @@
             padding: 30px;
         }
 
-        h1 {
-            color: #ffd75e;
-        }
-
-        .container {
-            max-width: 650px;
-            margin: 30px auto;
-        }
-
-        .card {
+        .box {
             background: #172952;
-            padding: 20px;
-            margin: 15px;
-            border-radius: 12px;
-            text-align: left;
+            max-width: 500px;
+            margin: 40px auto;
+            padding: 30px;
+            border-radius: 15px;
         }
 
-        .card h2 {
-            color: #4da3ff;
+        input, select {
+            width: 90%;
+            padding: 12px;
+            margin: 10px;
+            border-radius: 8px;
+            border: none;
         }
 
         button {
-            padding: 14px 25px;
-            margin: 15px 10px;
+            padding: 13px 25px;
+            margin: 15px;
             border: none;
             border-radius: 8px;
             cursor: pointer;
             font-weight: bold;
         }
 
-        .generate {
+        .btn {
             background: #35d07f;
         }
 
@@ -52,63 +47,70 @@
         }
 
         #result {
+            margin-top: 20px;
             color: #35d07f;
             font-size: 18px;
-            margin-top: 20px;
         }
     </style>
 </head>
 
 <body>
 
-    <h1>💡 AI Traffic Suggestions</h1>
+    <h1>🚦 Signal Optimization</h1>
 
-    <p>AI analyzes traffic and provides smart solutions</p>
+    <div class="box">
 
-    <div class="container">
+        <h2>AI Traffic Input</h2>
 
-        <div class="card">
-            <h2>🚦 Signal Optimization</h2>
-            <p>Adjust green signal time based on vehicle density.</p>
-        </div>
+        <input type="number" id="traffic"
+               placeholder="Enter vehicles">
 
-        <div class="card">
-            <h2>🚗 Traffic Diversion</h2>
-            <p>Redirect vehicles to less congested roads.</p>
-        </div>
+        <select id="signal">
+            <option value="1">Signal 1</option>
+            <option value="2">Signal 2</option>
+            <option value="3">Signal 3</option>
+            <option value="4">Signal 4</option>
+        </select>
 
-        <div class="card">
-            <h2>🚑 Emergency Priority</h2>
-            <p>Give priority to emergency vehicles like ambulances.</p>
-        </div>
+        <button class="btn" onclick="getSuggestion()">
+            🤖 Get AI Suggestion
+        </button>
 
-        <div class="card">
-            <h2>🤖 Agent Coordination</h2>
-            <p>AI agents communicate with nearby junctions.</p>
-        </div>
+        <div id="result"></div>
 
     </div>
-
-    <button class="generate" onclick="generateSuggestion()">
-        🤖 Generate AI Suggestion
-    </button>
 
     <button class="back" onclick="location.href='index.html'">
         🏠 Back to Menu
     </button>
 
-    <div id="result">
-        Click the button to get an AI suggestion.
-    </div>
-
-
     <script>
 
-        function generateSuggestion() {
+        function getSuggestion() {
+
+            let traffic =
+                Number(document.getElementById("traffic").value);
+
+            let signal =
+                document.getElementById("signal").value;
+
+            let time;
+
+            if (traffic >= 80) {
+                time = 60;
+            }
+            else if (traffic >= 40) {
+                time = 40;
+            }
+            else {
+                time = 25;
+            }
 
             document.getElementById("result").innerText =
-                "🤖 AI Suggestion: Increase green signal time at the congested junction.";
-
+                "🤖 AI Suggestion: Signal " + signal +
+                " should stay GREEN for " + time +
+                " seconds based on " + traffic +
+                " vehicles.";
         }
 
     </script>
