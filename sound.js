@@ -12,19 +12,25 @@ document.addEventListener("click", function (event) {
     oscillator.connect(gain);
     gain.connect(audio.destination);
 
-    oscillator.frequency.value = 700;
     oscillator.type = "sine";
 
-    gain.gain.setValueAtTime(0.2, audio.currentTime);
+    // Soft modern click sound
+    oscillator.frequency.setValueAtTime(900, audio.currentTime);
+    oscillator.frequency.exponentialRampToValueAtTime(
+        500,
+        audio.currentTime + 0.12
+    );
+
+    gain.gain.setValueAtTime(0.12, audio.currentTime);
     gain.gain.exponentialRampToValueAtTime(
-        0.01,
-        audio.currentTime + 0.2
+        0.001,
+        audio.currentTime + 0.12
     );
 
     oscillator.start();
-    oscillator.stop(audio.currentTime + 0.2);
+    oscillator.stop(audio.currentTime + 0.12);
 
-    // If button opens another page
+    // Page navigation
     let code = button.getAttribute("onclick");
 
     if (code && code.includes("location.href")) {
@@ -34,13 +40,12 @@ document.addEventListener("click", function (event) {
         );
 
         if (match) {
-
             event.preventDefault();
             event.stopImmediatePropagation();
 
             setTimeout(function () {
                 window.location.href = match[1];
-            }, 300);
+            }, 180);
         }
     }
 
