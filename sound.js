@@ -21,7 +21,7 @@ document.addEventListener("click", function (event) {
         audio.currentTime + 0.12
     );
 
-    gain.gain.setValueAtTime(0.12, audio.currentTime);
+    gain.gain.setValueAtTime(0.4, audio.currentTime);
     gain.gain.exponentialRampToValueAtTime(
         0.001,
         audio.currentTime + 0.12
