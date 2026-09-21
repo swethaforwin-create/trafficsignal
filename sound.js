@@ -1,26 +1,47 @@
 document.addEventListener("click", function (event) {
 
-    if (event.target.closest("button")) {
+    let button = event.target.closest("button");
 
-        const audio = new (window.AudioContext || window.webkitAudioContext)();
+    if (!button) return;
 
-        const oscillator = audio.createOscillator();
-        const gain = audio.createGain();
+    let audio = new (window.AudioContext || window.webkitAudioContext)();
 
-        oscillator.connect(gain);
-        gain.connect(audio.destination);
+    let oscillator = audio.createOscillator();
+    let gain = audio.createGain();
 
-        oscillator.frequency.value = 700;
-        oscillator.type = "sine";
+    oscillator.connect(gain);
+    gain.connect(audio.destination);
 
-        gain.gain.setValueAtTime(0.2, audio.currentTime);
-        gain.gain.exponentialRampToValueAtTime(
-            0.01,
-            audio.currentTime + 0.15
+    oscillator.frequency.value = 700;
+    oscillator.type = "sine";
+
+    gain.gain.setValueAtTime(0.2, audio.currentTime);
+    gain.gain.exponentialRampToValueAtTime(
+        0.01,
+        audio.currentTime + 0.2
+    );
+
+    oscillator.start();
+    oscillator.stop(audio.currentTime + 0.2);
+
+    // If button opens another page
+    let code = button.getAttribute("onclick");
+
+    if (code && code.includes("location.href")) {
+
+        let match = code.match(
+            /location\.href\s*=\s*['"]([^'"]+)['"]/
         );
 
-        oscillator.start();
-        oscillator.stop(audio.currentTime + 0.15);
+        if (match) {
+
+            event.preventDefault();
+            event.stopImmediatePropagation();
+
+            setTimeout(function () {
+                window.location.href = match[1];
+            }, 300);
+        }
     }
 
-});
+}, true);
