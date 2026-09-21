@@ -101,6 +101,15 @@
     <button class="back" onclick="location.href='index.html'">
         🏠 Back to Menu
     </button>
+    <script>
+window.onload = function() {
+    let sound = new SpeechSynthesisUtterance(
+        "Welcome to Dynamic Traffic AI"
+    );
+    sound.rate = 1;
+    speechSynthesis.speak(sound);
+};
+</script>
 
 </body>
 </html>
