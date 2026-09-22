@@ -32,7 +32,7 @@
         }
 
         .number {
-            font-size: 32px;
+            font-size: 28px;
             color: #ffd75e;
             font-weight: bold;
         }
@@ -44,10 +44,12 @@
             border-radius: 8px;
             cursor: pointer;
             font-weight: bold;
+            font-size: 16px;
         }
 
         .run {
             background: #35d07f;
+            color: black;
         }
 
         .back {
@@ -68,95 +70,92 @@
 
 <body>
 
-<h1>🤖 AI Agent Coordination</h1>
+    <h1>🤖 AI Agent Coordination</h1>
 
-<p>Autonomous agents communicate and optimize traffic</p>
+    <p>Autonomous agents communicate and optimize traffic</p>
 
-<div class="container">
+    <div class="container">
 
-    <div class="card">
-        <h2>🚦 Junction 1</h2>
-        <p>Traffic</p>
-        <div class="number" id="j1">--</div>
+        <div class="card">
+            <h2>🚦 Junction 1</h2>
+            <p>Traffic</p>
+            <div class="number" id="j1">--</div>
+        </div>
+
+        <div class="card">
+            <h2>🚦 Junction 2</h2>
+            <p>Traffic</p>
+            <div class="number" id="j2">--</div>
+        </div>
+
+        <div class="card">
+            <h2>🚦 Junction 3</h2>
+            <p>Traffic</p>
+            <div class="number" id="j3">--</div>
+        </div>
+
+        <div class="card">
+            <h2>🚦 Junction 4</h2>
+            <p>Traffic</p>
+            <div class="number" id="j4">--</div>
+        </div>
+
     </div>
 
-    <div class="card">
-        <h2>🚦 Junction 2</h2>
-        <p>Traffic</p>
-        <div class="number" id="j2">--</div>
+    <button class="run" onclick="coordinateAgents()">
+        🤖 Run AI Coordination
+    </button>
+
+    <div id="result">
+        Waiting for AI agents...
     </div>
 
-    <div class="card">
-        <h2>🚦 Junction 3</h2>
-        <p>Traffic</p>
-        <div class="number" id="j3">--</div>
-    </div>
+    <button class="back" onclick="location.href='suggestions.html'">
+        ↩️ Back to Suggestions
+    </button>
 
-    <div class="card">
-        <h2>🚦 Junction 4</h2>
-        <p>Traffic</p>
-        <div class="number" id="j4">--</div>
-    </div>
 
-</div>
+    <script>
 
-<button class="run" onclick="coordinateAgents()">
-    🤖 Run AI Coordination
-</button>
+        function coordinateAgents() {
 
-<div id="result">
-    Waiting for AI agents...
-</div>
+            let j1 = Math.floor(Math.random() * 80) + 20;
+            let j2 = Math.floor(Math.random() * 80) + 20;
+            let j3 = Math.floor(Math.random() * 80) + 20;
+            let j4 = Math.floor(Math.random() * 80) + 20;
 
-<button class="back"
-        onclick="location.href='suggestions.html'">
-    ↩️ Back to Suggestions
-</button>
+            document.getElementById("j1").innerText = j1 + " vehicles";
+            document.getElementById("j2").innerText = j2 + " vehicles";
+            document.getElementById("j3").innerText = j3 + " vehicles";
+            document.getElementById("j4").innerText = j4 + " vehicles";
 
-<script>
+            let traffic = [j1, j2, j3, j4];
 
-function coordinateAgents() {
+            let maxTraffic = Math.max(...traffic);
 
-    // AI simulated traffic detection
-    let j1 = Math.floor(Math.random() * 80) + 20;
-    let j2 = Math.floor(Math.random() * 80) + 20;
-    let j3 = Math.floor(Math.random() * 80) + 20;
-    let j4 = Math.floor(Math.random() * 80) + 20;
+            let junction = traffic.indexOf(maxTraffic) + 1;
 
-    document.getElementById("j1").innerText = j1 + " vehicles";
-    document.getElementById("j2").innerText = j2 + " vehicles";
-    document.getElementById("j3").innerText = j3 + " vehicles";
-    document.getElementById("j4").innerText = j4 + " vehicles";
+            document.getElementById("result").innerHTML =
+                "📡 <b>Agent Communication</b><br><br>" +
 
-    let traffic = [j1, j2, j3, j4];
+                "Agent 1 → Traffic data detected<br>" +
+                "Agent 2 → Traffic flow analyzed<br>" +
+                "Agent 3 → Congestion identified<br>" +
+                "Agent 4 → Coordination decision made<br><br>" +
 
-    let maxTraffic = Math.max(...traffic);
+                "🔴 Highest Traffic: Junction " + junction + "<br>" +
 
-    let junction =
-        traffic.indexOf(maxTraffic) + 1;
+                "🚦 AI Decision: Give more GREEN time to Junction "
+                + junction + "<br><br>" +
 
-    document.getElementById("result").innerHTML =
+                "✅ All agents coordinated successfully.";
+        }
 
-        "📡 <b>Agent Communication</b><br><br>" +
+    </script>
 
-        "Agent 1 → Agents: Traffic data detected<br>" +
 
-        "Agent 2 → Agents: Traffic flow analyzed<br>" +
+    <!-- Button Sound -->
+    <script src="sound.js"></script>
 
-        "Agent 3 → Agents: Congestion identified<br>" +
-
-        "Agent 4 → All Agents: Coordination decision made<br><br>" +
-
-        "🔴 Highest Traffic: Junction " +
-        junction + "<br>" +
-
-        "🚦 AI Decision: Give more GREEN time to " +
-        "Junction " + junction + "<br><br>" +
-
-        "✅ All agents coordinated successfully.";
-
-}
-
-<script src="sound.js"></script>
 </body>
 </html>
